@@ -1,0 +1,17 @@
+.MovieGenresContainer {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    gap: 0px;
+    row-gap: 3px;
+    column-gap: 3px;
+    padding-bottom: 5px;
+}
+
+  
+code {
+    padding-block: 0.2em 0.2em;
+    font-size: 12px;
+}
+  
