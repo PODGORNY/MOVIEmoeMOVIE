@@ -21,7 +21,6 @@ export default class FilmCard extends React.Component {
   }
 
   renderGenres = (genresArr, genres) => {
-    console.log(genresArr, genres);
     if (genres && genresArr) {
       return genres.map((genreId) => {
         const genreObj = genresArr.find(({ id }) => id === genreId);
