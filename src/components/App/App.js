@@ -280,21 +280,21 @@ export default class App extends React.Component {
       }
     };
 
-    const polling = {
+    const opros = {
       enabled: true,
       url: 'www.themoviedb.org/',
     };
 
     return (
       <React.Fragment>
-        <Online polling={polling}>
+        <Online opros={opros}>
           <GenresContext.Provider value={genresList}>
             <div className="App">
               <Tabs items={tabs} centered onChange={this.onChangeTab} />
             </div>
           </GenresContext.Provider>
         </Online>
-        <Offline polling={polling} onChange={networkError} />
+        <Offline opros={opros} onChange={networkError} />
       </React.Fragment>
     );
   }
