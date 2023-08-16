@@ -1,0 +1,26 @@
+.rate-circle {
+  width: 30px;
+  height: 30px;
+  border: solid 2px black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.rate-circle__red {
+  border-color: #e90000;
+}
+
+.rate-circle__orange {
+  border-color: #e97e00;
+}
+
+.rate-circle__yellow {
+  border-color: #e9d100;
+}
+
+.rate-circle__green {
+  border-color: #66e900;
+}

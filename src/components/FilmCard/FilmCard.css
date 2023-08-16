@@ -1,0 +1,68 @@
+.card {
+  display: grid;
+  grid-template-columns: minmax(12px, min-content) min-content 12px auto 12px;
+  grid-template-rows: 12px min-content 12px auto 12px;
+  grid-template-areas:
+    'poster poster . . .'
+    'poster poster . header .'
+    'poster poster . . .'
+    'poster poster . text .'
+    'poster poster . . .';
+  width: 454px;
+  height: 281px;
+  box-shadow: 0px 4px 12px rgb(0 0 0 / 15%);
+}
+
+.card__header {
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__rate {
+  font-size: 15px;
+  align-self: flex-end;
+}
+
+.card__title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__title-text {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.card__date {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: #827e7e;
+}
+
+.card__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-area: text;
+}
+
+@media (max-width: 1010px) {
+  .card {
+    grid-template-areas:
+      '. . . . .'
+      '. poster . header .'
+      '. . . . .'
+      '. text text text .'
+      '. . . . .';
+    height: 245px;
+  }
+}
