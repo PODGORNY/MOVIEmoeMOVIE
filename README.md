@@ -1,1 +1,1 @@
-[https://moviedb-dun.vercel.app/](https://movie-moe-movie-podgorny1.vercel.app/)https://movie-moe-movie-podgorny1.vercel.app/
+[выстраданное приложение о кино](https://movie-moe-movie-podgorny1.vercel.app/)
