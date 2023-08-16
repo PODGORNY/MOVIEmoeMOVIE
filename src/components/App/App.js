@@ -1,7 +1,7 @@
 import React from 'react';
 // внешний стиль
 import { Input, Tabs, Spin, Space, Modal } from 'antd';
-// задержка отправки запроса на сервер
+// задержка запроса на сервер
 import _debounce from 'lodash/debounce';
 // проверка интернета
 import { Offline, Online } from 'react-detect-offline';
