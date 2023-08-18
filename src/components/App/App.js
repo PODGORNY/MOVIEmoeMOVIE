@@ -25,7 +25,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchFilm: null,
+      searchFilm: 'return',
       apiSearchFilm: 'return',
       filmList: null,
       currentPage: 1,
