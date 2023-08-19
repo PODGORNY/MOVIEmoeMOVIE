@@ -27,7 +27,7 @@ export default class App extends React.Component {
     this.state = {
       searchFilm: 'return',
       apiSearchFilm: 'return',
-      filmList: null,
+      filmList: [],
       currentPage: 1,
       totalResults: null,
       loading: false,
@@ -36,6 +36,10 @@ export default class App extends React.Component {
       guestSessionId: null,
       genresList: null,
       ratedFilms: new Map(),
+      network: {
+        enabled: true,
+        url: 'www.themoviedb.org/',
+      },
     };
     this.textInput = React.createRef();
   }
@@ -130,17 +134,13 @@ export default class App extends React.Component {
       loading: true,
     });
     try {
-      serviceFunc()
-        .then((listFilm) => {
-          this.setState({
-            filmList: listFilm.results,
-            totalResults: listFilm.total_results,
-            loading: false,
-          });
-        })
-        .catch((err) => {
-          this.onError(err);
+      serviceFunc().then((listFilm) => {
+        this.setState({
+          filmList: listFilm.results,
+          totalResults: listFilm.total_results,
+          loading: false,
         });
+      });
     } catch (err) {
       this.onError(err);
     }
@@ -167,19 +167,14 @@ export default class App extends React.Component {
   createGuestSession() {
     if (Date.parse(localStorage.getItem('expires_at')) < Date.now() || !localStorage.getItem('expires_at')) {
       try {
-        this.movieService
-          .createGuestSession()
-          .then((result) => {
-            this.setState({
-              guestSessionId: result.guest_session_id,
-            });
-            localStorage.clear();
-            localStorage.setItem('guest_session_id', result.guest_session_id);
-            localStorage.setItem('expires_at', result.expires_at);
-          })
-          .catch((err) => {
-            this.onError(err);
+        this.movieService.createGuestSession().then((result) => {
+          this.setState({
+            guestSessionId: result.guest_session_id,
           });
+          localStorage.clear();
+          localStorage.setItem('guest_session_id', result.guest_session_id);
+          localStorage.setItem('expires_at', result.expires_at);
+        });
       } catch (err) {
         this.onError(err);
       }
@@ -199,6 +194,20 @@ export default class App extends React.Component {
     });
   }
 
+  networkError = (err) => {
+    Modal.destroyAll();
+    if (!err) {
+      Modal.error({
+        title: 'No internet connection',
+        content: 'No internet connection',
+      });
+    } else {
+      Modal.success({
+        content: 'Successfull connection',
+      });
+    }
+  };
+
   render() {
     const {
       filmList,
@@ -211,6 +220,7 @@ export default class App extends React.Component {
       ratedFilms,
       loading,
       error,
+      network,
     } = this.state;
 
     const hasData = !(loading || error);
@@ -266,35 +276,16 @@ export default class App extends React.Component {
       },
     ];
 
-    const networkError = (err) => {
-      Modal.destroyAll();
-      if (!err) {
-        Modal.error({
-          title: 'No internet connection',
-          content: 'No internet connection',
-        });
-      } else {
-        Modal.success({
-          content: 'Successfull connection',
-        });
-      }
-    };
-
-    const opros = {
-      enabled: true,
-      url: 'www.themoviedb.org/',
-    };
-
     return (
       <React.Fragment>
-        <Online opros={opros}>
+        <Online opros={network}>
           <GenresContext.Provider value={genresList}>
             <div className="App">
               <Tabs items={tabs} centered onChange={this.onChangeTab} />
             </div>
           </GenresContext.Provider>
         </Online>
-        <Offline opros={opros} onChange={networkError} />
+        <Offline opros={network} onChange={this.networkError} />
       </React.Fragment>
     );
   }

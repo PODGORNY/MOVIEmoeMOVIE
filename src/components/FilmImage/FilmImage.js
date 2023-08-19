@@ -3,7 +3,7 @@ import { Space, Spin } from 'antd';
 import PropTypes from 'prop-types';
 
 import './FilmImage.css';
-import noPoster from './no-poster.png';
+import noPoster from '../../store/no-poster.png';
 
 export default class FilmImage extends React.Component {
   constructor(props) {
