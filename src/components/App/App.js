@@ -230,7 +230,7 @@ export default class App extends React.Component {
         <Spin size="large" />
       </Space>
     ) : null;
-
+    // выдать лист если не грузится...а пока грузится спиннер...null здесь невозможен
     const content = hasData ? (
       <FilmList
         filmList={filmList}
@@ -243,6 +243,7 @@ export default class App extends React.Component {
         ratedFilms={ratedFilms}
       />
     ) : null;
+    // массив с двумя вкладками...выбираю одно или другое
     const tabs = [
       {
         label: 'Search',
