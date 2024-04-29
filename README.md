@@ -1,2 +1,1 @@
-[выжженое в моём сердце, приложение о кино](https://movie-moe-movie-podgorny1.vercel.app/)
-...надеюсь что всё хорошо
+[выжженое мое - приложение о кино MOVIE](https://movie-moe-movie-podgorny1.vercel.app/)
